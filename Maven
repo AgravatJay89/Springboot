@@ -1,0 +1,29 @@
+Apache Maven is a powerful build automation and project management tool used primarily for Java-based projects.
+It is designed to simplify the build process and standardize how software projects are structured and managed.
+
+Key Functions of Maven:
+Build Automation: Maven automates the creation of software builds, handling tasks like compiling source code, running tests, 
+and packaging code into distributable formats (like JAR or WAR files).
+
+Dependency Management: This is one of Maven's most significant features. 
+Instead of manually downloading external libraries (JAR files) and adding them to your project, you define them in a configuration file. 
+Maven then automatically fetches these libraries from a central repository and manages their versions, ensuring your project has everything it needs to run.
+
+Project Object Model (POM): Maven uses a file called pom.xml. This file acts as the central configuration for your project,
+defining its dependencies, build plugins, and project details in a standardized XML format.
+
+Standardized Lifecycle: Maven enforces a consistent build lifecycle, which includes standard phases like validate, compile, test, package, install, and deploy. 
+This makes it easier for developers to understand and work on any Maven-based project, regardless of who created it.
+In essence, Maven removes much of the manual, repetitive work involved in software development, acting as an "engine room" that keeps your project's build process 
+consistent and efficient.
+
+============================
+Maven provides a standard build lifecycle. Here are the common commands used to manage Java and Spring Boot projects:
+
+mvn clean : Removes the target folder, effectively deleting all previously compiled files and build artifacts to ensure a fresh start.
+mvn validate : Checks that the project is correct and all necessary information is available in the pom.xml file.
+mvn compile : Compiles the source code of the project into the target folder.
+mvn test : Runs the unit tests for the application using a suitable testing framework.
+mvn package : Compiles the code and packages it into a distributable format, such as a JAR (Java ARchive) file, which you can then run or share.
+mvn install : Installs the packaged JAR file into your local .m2 repository (~/.m2/repository), making it available for other projects on your machine to use as a dependency.
+Note on Maven Wrapper: If Maven is not installed globally on your system, you can use the Maven Wrapper (provided with Spring Boot projects) by replacing mvn with ./mvnw (on Linux/macOS) or mvnw.cmd (on Windows), for example: ./mvnw package.
