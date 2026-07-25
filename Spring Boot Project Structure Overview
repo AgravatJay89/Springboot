@@ -1,0 +1,20 @@
+Spring Boot project structure, explaining how it is organized and how the build process works:
+
+Spring Boot Project Structure Overview
+.mvn & .gitignore: Contains Maven Wrapper configurations and files to exclude from version control (e.g., build artifacts like the target folder).
+src/main: The heart of the application.
+java/: Contains your source code and the main application class.
+resources/: Houses configuration files like application.properties and static assets.
+src/test: Dedicated directory for unit and integration testing of your application code.
+Maven Configuration (pom.xml)
+pom.xml (Project Object Model): The core configuration file for dependencies, plugins, and project metadata.
+Parent POM: Uses spring-boot-starter-parent to inherit essential dependencies and version management.
+Dependencies: Manages project-specific libraries.
+Plugins: The spring-boot-maven-plugin is crucial here, as it enables the packaging of the application into a Fat JAR.
+The Build Process
+target/ Folder: Created after running mvn package. It contains the compiled bytecode and the final executable JAR.
+Fat JAR vs. Original JAR:
+A Fat JAR is a self-contained executable that includes all dependencies and an embedded server (like Tomcat), 
+allowing you to run it with java -jar without external infrastructure.
+Repackaging: The Maven plugin performs a "repackage" process where it wraps the original code with all necessary dependencies to create the final,
+heavy-duty Fat JAR.
