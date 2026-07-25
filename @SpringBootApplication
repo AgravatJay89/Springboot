@@ -1,0 +1,46 @@
+core architecture of Spring Boot
+
+1. Inversion of Control (IoC) & Application Context
+Traditional Approach: You manually create objects using new ClassName(). This makes your code tightly coupled.
+IoC Concept: You delegate the object creation to the IoC Container (also known as the Application Context). Instead of you creating the object, you ask the container to provide it.
+Definition: The IoC Container acts as a central repository (a "box") where all your application's objects (beans) are managed.
+
+2. Component Scanning & Beans 
+Bean: In Spring terms, an object managed by the IoC container is called a Bean.
+@Component Annotation: When you mark a class with @Component, you are telling the Spring IoC container: "Please register this class as a bean."
+Component Scan: The application automatically scans the specified base package for classes annotated with @Component to initialize them as beans.
+
+3. @SpringBootApplication
+This is the core entry-point annotation that performs three critical tasks:
+
+@ComponentScan: Tells Spring to look for components (beans) in the current package and sub-packages.
+@EnableAutoConfiguration: Automatically configures your application based on the dependencies present in your pom.xml (e.g., setting up a database or server).
+@Configuration: Allows you to define additional beans within the class using the @Bean annotation.
+
+4. Dependency Injection (DI)
+Mechanism: DI is the process of providing an object's dependencies to it.
+@Autowired: Used to inject a bean into another class. Instead of creating a new instance manually, Spring automatically injects the existing bean instance from the IoC container into your field.
+Why use it? It prevents the creation of multiple unnecessary object instances (memory efficiency) and promotes loose coupling.
+Note: If you forget to use @Autowired, the field will be null, leading to a NullPointerException when you try to use it.
+
+ *IOC stands for Inversion of Control.
+Inversion of Control refers to the design principle where the responsibility of creating and managing objects is transferred from
+the programmer (i.e., using new ClassName()) to the Spring Framework's IOC Container (also known as the Application Context),
+which manages the lifecycle and dependencies of these objects
+
+=========
+The choice between @Component and @Bean depends primarily on who has control over the class definition and how much customization you need during bean initialization.
+
+When to use @Component
+Use @Component (or its stereotypes like @Service, @Repository, or @Controller) when you have direct access to the source code of the class. By adding the annotation directly to the class, you allow Spring to automatically detect it through component scanning.
+
+Pros: Simplest approach, less boilerplate code, and highly automatic.
+When: Use for your own application classes where you control the implementation.
+When to use @Bean
+Use @Bean when you need to register an object as a bean but cannot (or should not) annotate the class directly. This typically occurs in two scenarios:
+
+Third-Party Libraries: When you are using a class from an external library (e.g., a database connection pool or a third-party API client) where you cannot modify the source code to add @Component.
+Advanced Customization: When you need to perform complex logic to initialize the object (e.g., reading external properties, setting up specific dependencies, or initializing the object with specific arguments) before it enters the Spring IoC container.
+Summary Comparison
+@Component: Used for auto-detection; you annotate the class itself.
+@Bean: Used for manual configuration; you use it inside a class marked with @Configuration to return an instance of a class, giving you full control over how that bean is created 
